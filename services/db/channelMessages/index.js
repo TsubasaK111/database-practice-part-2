@@ -2,8 +2,8 @@ const moment = require("moment");
 
 const ChannelMessage = function(dbChannelMessage) {
   this.id = dbChannelMessage.id;
-  this.fromUser = dbChannelMessage.from;
-  this.toChannel = dbChannelMessage.to;
+  this.fromUser = dbChannelMessage.username;
+  this.toChannel = dbChannelMessage.name;
   this.message = dbChannelMessage.message;
   this.sentAt = new Date(dbChannelMessage.sent_at);
 };

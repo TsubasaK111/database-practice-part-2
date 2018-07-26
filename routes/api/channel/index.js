@@ -3,14 +3,14 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (services) => {
-  router.post("", (req, res) =>
+  router.post("/", (req, res) =>
     services.db.channels
       .create({ name: req.body.name })
       .then((channels) => res.status(201).json(channels.serialize()))
       .catch((err) => res.status(400).send(err.message))
   );
 
-  router.get("", (req, res) =>
+  router.get("/", (req, res) =>
     services.db.channels
       .list()
       .then((channels) => channels.map((channel) => channel.serialize()))
