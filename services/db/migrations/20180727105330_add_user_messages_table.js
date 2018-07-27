@@ -1,21 +1,21 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable("channel_messages", (t) => {
+  return knex.schema.createTable("user_messages", (t) => {
     t.increments() // auto-incrementing id column
       .index(); // index this column
-
-    t.integer("channel_id")
-      .unsigned()
-      .notNullable();
-
-    t.foreign("channel_id")
-      .references("id")
-      .inTable("channels");
 
     t.integer("from_id")
       .unsigned()
       .notNullable();
 
     t.foreign("from_id")
+      .references("id")
+      .inTable("users");
+
+    t.integer("to_id")
+      .unsigned()
+      .notNullable();
+
+    t.foreign("to_id")
       .references("id")
       .inTable("users");
 
@@ -30,5 +30,5 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   // undo this migration by destroying the 'users' table
-  return knex.schema.dropTable("channel_messages");
+  return knex.schema.dropTable("user_messages");
 };
